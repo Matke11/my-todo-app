@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllTasks } from "../store/selectors";
 import { getAllTasksFromApi } from "../store/actions";
 import styled from "styled-components";
+import List from "../components/List";
 
 const ListWrapper = styled.div`
   display: flex;

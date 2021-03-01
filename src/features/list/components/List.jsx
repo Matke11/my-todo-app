@@ -19,7 +19,15 @@ const List = ({
 }) => {
   return (
     <ListTaskWrapper key={id}>
-      <p>{title}</p>
+      <Task
+        title={title}
+        description={description}
+        priority={priority}
+        id={id}
+        dueDate={dueDate}
+        status={status}
+        timeEstimated={timeEstimated}
+      />
     </ListTaskWrapper>
   );
 };
