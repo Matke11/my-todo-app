@@ -21,7 +21,16 @@ const ListContainer = () => {
   return (
     <ListWrapper>
       {listOfAllTasks.map(item => (
-        <p>{item.title}</p>
+        <List
+          title={item.title}
+          description={item.description}
+          priority={item.priority}
+          id={item.id}
+          dueDate={item.dueDate}
+          status={item.status}
+          timeEstimated={item.timeEstimated}
+          key={item.id}
+        />
       ))}
     </ListWrapper>
   );
