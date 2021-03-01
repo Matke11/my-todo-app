@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { Switch, Route } from "react-router";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import ListContainer from "./features/list/containers/ListContainer";
 

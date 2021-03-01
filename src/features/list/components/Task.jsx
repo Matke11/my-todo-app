@@ -1,5 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { deleteTask, changeTaskStatus } from "../store/actions";
+import { Button } from "react-bootstrap";
 
 const TaskWrapper = styled.div`
   text-align: left;
@@ -75,6 +78,16 @@ const DescriptionText = styled.p`
   font-weight: 400;
 `;
 
+const TaskActionWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  right: -170px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all ease-in-out 0.5s;
+`;
+
 const Task = ({
   priority,
   title,
@@ -84,30 +97,49 @@ const Task = ({
   status,
   timeEstimated
 }) => {
+    const dispatch = useDispatch();
   const [isTaskExpended, setTaskExpand] = React.useState(false);
+
+  const handleDelete = id => {
+    dispatch(deleteTask(id));
+  };
+
+  const handleStatusChange = id => {
+    dispatch(changeTaskStatus(id));
+  };
 
   const isTaskStatusDone = status === "Done";
 
   return (
-    <TaskWrapper
-      key={id}
-      isExpanded={isTaskExpended}
-      onClick={() => setTaskExpand(!isTaskExpended)}
-      isDone={isTaskStatusDone}
-    >
-      <PriorityIcon priority={priority} />
-      <TaskTitle>{title}</TaskTitle>
-      <DueDate>Due Date: {dueDate}</DueDate>
-      <AdditionalInfo isExpanded={isTaskExpended}>
-        <StatusAndTimeWrapper>
-          <p>
-            Status: <span>{status}</span>
-          </p>
-          <p>Time estimated: {timeEstimated}</p>
-        </StatusAndTimeWrapper>
-        <DescriptionText>{description}</DescriptionText>
-      </AdditionalInfo>
-    </TaskWrapper>
+    <React.Fragment>
+      <TaskWrapper
+        key={id}
+        isExpanded={isTaskExpended}
+        onClick={() => setTaskExpand(!isTaskExpended)}
+        isDone={isTaskStatusDone}
+      >
+        <PriorityIcon priority={priority} />
+        <TaskTitle>{title}</TaskTitle>
+        <DueDate>Due Date: {dueDate}</DueDate>
+        <AdditionalInfo isExpanded={isTaskExpended}>
+          <StatusAndTimeWrapper>
+            <p>
+              Status: <span>{status}</span>
+            </p>
+            <p>Time estimated: {timeEstimated}</p>
+          </StatusAndTimeWrapper>
+          <DescriptionText>{description}</DescriptionText>
+        </AdditionalInfo>
+      </TaskWrapper>
+      <TaskActionWrapper>
+        <Button variant="danger" onClick={() => handleDelete(id)}>
+          Delete
+        </Button>
+        <Button variant="secondary" onClick={() => handleStatusChange(id)}>
+          Done
+        </Button>
+      </TaskActionWrapper>
+    </React.Fragment>
   );
 };
 

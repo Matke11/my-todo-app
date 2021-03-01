@@ -2,7 +2,9 @@ import axios from "axios";
 import {
   GET_ALL_TASKS_FROM_API_REQUEST,
   GET_ALL_TASKS_FROM_API_FAIL,
-  GET_ALL_TASKS_FROM_API_SUCCESS
+  GET_ALL_TASKS_FROM_API_SUCCESS,
+  DELETE_TASK_SUCCESS,
+  CHANGE_TASK_STATUS_SUCCESS
 } from "./constants";
 
 const getAllTasksFromApiRequest = () => {
@@ -37,4 +39,18 @@ export const getAllTasksFromApi = () => dispatch => {
     .catch(error => {
       dispatch(getAllTasksFromApiFail(error));
     });
+};
+
+export const deleteTask = id => {
+  return {
+    type: DELETE_TASK_SUCCESS,
+    payload: id
+  };
+};
+
+export const changeTaskStatus = id => {
+  return {
+    type: CHANGE_TASK_STATUS_SUCCESS,
+    payload: id
+  };
 };
