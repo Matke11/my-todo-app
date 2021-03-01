@@ -131,14 +131,16 @@ const Task = ({
           <DescriptionText>{description}</DescriptionText>
         </AdditionalInfo>
       </TaskWrapper>
-      <TaskActionWrapper>
-        <Button variant="danger" onClick={() => handleDelete(id)}>
-          Delete
-        </Button>
-        <Button variant="secondary" onClick={() => handleStatusChange(id)}>
-          Done
-        </Button>
-      </TaskActionWrapper>
+      {!isTaskStatusDone ? (
+        <TaskActionWrapper>
+          <Button variant="danger" onClick={() => handleDelete(id)}>
+            Delete
+          </Button>
+          <Button variant="secondary" onClick={() => handleStatusChange(id)}>
+            Done
+          </Button>
+        </TaskActionWrapper>
+      ) : null}
     </React.Fragment>
   );
 };

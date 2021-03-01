@@ -26,9 +26,9 @@ const listReducer = (state = initialState, action) => {
       return state;
 
     case CHANGE_TASK_STATUS_SUCCESS:
-      const task = state.allTasks.find(item => item.id === action.payload);
+      const task = state.activeTasks.find(item => item.id === action.payload);
       task.status = "Done";
-      const newArrayActiveStatus = state.allTasks.filter(
+      const newArrayActiveStatus = state.activeTasks.filter(
         item => item.status !== "Done"
       );
       state.activeTasks = newArrayActiveStatus;

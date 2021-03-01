@@ -8,6 +8,7 @@ import { getAllTasksFromApi, addNewTask } from "../store/actions";
 import styled from "styled-components";
 import List from "../components/List";
 import { Button, Modal } from "react-bootstrap";
+import ListActions from "../components/ListActions";
 
 const ListWrapper = styled.div`
   display: flex;
@@ -47,14 +48,11 @@ const ListContainer = () => {
   return (
     <React.Fragment>
       <ListWrapper>
-        <div>
-          <Button variant="secondary" onClick={() => setViewAll(!viewAll)}>
-            {viewAll ? "View only active" : "View All"}
-          </Button>
-          <Button variant="primary" onClick={() => setModalState(true)}>
-            Add new task
-          </Button>
-        </div>
+        <ListActions
+          setViewAll={setViewAll}
+          addNewModalSetState={setModalState}
+          viewAll={viewAll}
+        />
         {viewAll
           ? listOfAllTasks.map(item => (
               <List
@@ -90,7 +88,7 @@ const ListContainer = () => {
             initialValues={{
               title: "",
               description: "",
-              priority: "",
+              priority: "low",
               dueDate: ""
             }}
             validationSchema={SubmitTask}
@@ -123,9 +121,9 @@ const ListContainer = () => {
                     <span className="error-msg">{props.errors.priority}</span>
                   ) : null}
                 </div>
-                <button variant="primary" type="submit">
+                <Button variant="primary" type="submit">
                   Submit
-                </button>
+                </Button>
               </Form>
             )}
           </Formik>
