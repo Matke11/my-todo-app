@@ -97,7 +97,7 @@ const Task = ({
   status,
   timeEstimated
 }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [isTaskExpended, setTaskExpand] = React.useState(false);
 
   const handleDelete = id => {

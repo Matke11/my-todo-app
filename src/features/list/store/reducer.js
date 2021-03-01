@@ -5,13 +5,15 @@ import {
 } from "./constants";
 
 const initialState = {
-  allTasks: []
+  allTasks: [],
+  activeTasks: []
 };
 
 const listReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_TASKS_FROM_API_SUCCESS:
       state.allTasks = action.payload;
+      state.activeTasks = action.payload;
       return state;
 
     case DELETE_TASK_SUCCESS:
@@ -19,6 +21,7 @@ const listReducer = (state = initialState, action) => {
         item => item.id !== action.payload
       );
       state.allTasks = newArray;
+      state.activeTasks = newArray;
       return state;
 
     case CHANGE_TASK_STATUS_SUCCESS:
@@ -27,7 +30,7 @@ const listReducer = (state = initialState, action) => {
       const newArrayActiveStatus = state.allTasks.filter(
         item => item.status !== "Done"
       );
-      state.allTasks = newArrayActiveStatus;
+      state.activeTasks = newArrayActiveStatus;
       return state;
 
     default:
