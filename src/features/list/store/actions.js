@@ -4,7 +4,8 @@ import {
   GET_ALL_TASKS_FROM_API_FAIL,
   GET_ALL_TASKS_FROM_API_SUCCESS,
   DELETE_TASK_SUCCESS,
-  CHANGE_TASK_STATUS_SUCCESS
+  CHANGE_TASK_STATUS_SUCCESS,
+  ADD_NEW_TASK_SUCCESS
 } from "./constants";
 
 const getAllTasksFromApiRequest = () => {
@@ -52,5 +53,12 @@ export const changeTaskStatus = id => {
   return {
     type: CHANGE_TASK_STATUS_SUCCESS,
     payload: id
+  };
+};
+
+export const addNewTask = data => {
+  return {
+    type: ADD_NEW_TASK_SUCCESS,
+    payload: data
   };
 };

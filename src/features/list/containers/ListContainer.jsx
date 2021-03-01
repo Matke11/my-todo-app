@@ -4,7 +4,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import moment from "moment";
 import { getAllTasks, getAllActiveTasks } from "../store/selectors";
-import { getAllTasksFromApi } from "../store/actions";
+import { getAllTasksFromApi, addNewTask } from "../store/actions";
 import styled from "styled-components";
 import List from "../components/List";
 import { Button, Modal } from "react-bootstrap";
@@ -41,7 +41,7 @@ const ListContainer = () => {
       status: "active",
       id: biggestId + 1
     };
-    console.log(data);
+    dispatch(addNewTask(data));
   };
 
   return (

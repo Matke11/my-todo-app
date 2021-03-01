@@ -1,7 +1,8 @@
 import {
   GET_ALL_TASKS_FROM_API_SUCCESS,
   DELETE_TASK_SUCCESS,
-  CHANGE_TASK_STATUS_SUCCESS
+  CHANGE_TASK_STATUS_SUCCESS,
+  ADD_NEW_TASK_SUCCESS
 } from "./constants";
 
 const initialState = {
@@ -32,6 +33,17 @@ const listReducer = (state = initialState, action) => {
       );
       state.activeTasks = newArrayActiveStatus;
       return state;
+
+    case ADD_NEW_TASK_SUCCESS:
+      let activeTasks = [...state.activeTasks];
+      let allTasks = [...state.allTasks];
+      activeTasks.push(action.payload);
+      allTasks.push(action.payload);
+      return {
+        ...state,
+        activeTasks,
+        allTasks
+      };
 
     default:
       return state;
