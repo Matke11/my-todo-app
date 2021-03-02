@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
 import { getAllTasks, getAllActiveTasks } from "../store/selectors";
 import {
   getAllTasksFromApi,
@@ -36,7 +35,6 @@ const ListContainer = () => {
   }, [dispatch]);
 
   const handleSubmitTask = response => {
-    const estimated = moment().to(response.dueDate);
     const biggestId = Math.max.apply(
       null,
       listOfAllTasks.map(item => item.id)
@@ -46,7 +44,7 @@ const ListContainer = () => {
       description: response.description,
       dueDate: response.dueDate,
       priority: response.priority,
-      timeEstimated: estimated,
+      timeEstimated: response.timeEstimated,
       status: "active",
       id: biggestId + 1
     };
