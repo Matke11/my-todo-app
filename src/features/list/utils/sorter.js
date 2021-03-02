@@ -3,14 +3,11 @@ import moment from "moment";
 const addPriorityValues = priority => {
   if (priority === "low") {
     return 1;
-  }
-  if (priority === "medium") {
+  } else if (priority === "medium") {
     return 2;
-  }
-  if (priority === "high") {
+  } else if (priority === "high") {
     return 3;
-  }
-  if (priority === "highest") {
+  } else if (priority === "highest") {
     return 4;
   }
 };
