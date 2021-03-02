@@ -2,8 +2,10 @@ import {
   GET_ALL_TASKS_FROM_API_SUCCESS,
   DELETE_TASK_SUCCESS,
   CHANGE_TASK_STATUS_SUCCESS,
-  ADD_NEW_TASK_SUCCESS
+  ADD_NEW_TASK_SUCCESS,
+  SORT_LIST_OF_TASK_SUCCESS
 } from "./constants";
+import { sorter } from "../utils/sorter";
 
 const initialState = {
   allTasks: [],
@@ -44,6 +46,13 @@ const listReducer = (state = initialState, action) => {
         activeTasks,
         allTasks
       };
+
+    case SORT_LIST_OF_TASK_SUCCESS:
+      const newAllTasksArray = sorter(action.payload, state.allTasks);
+      const newActiveTasksArray = sorter(action.payload, state.activeTasks);
+      state.allTasks = newAllTasksArray;
+      state.activeTasks = newActiveTasksArray;
+      return state;
 
     default:
       return state;

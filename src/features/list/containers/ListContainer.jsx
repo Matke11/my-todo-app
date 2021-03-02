@@ -2,7 +2,11 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { getAllTasks, getAllActiveTasks } from "../store/selectors";
-import { getAllTasksFromApi, addNewTask } from "../store/actions";
+import {
+  getAllTasksFromApi,
+  addNewTask,
+  sortListOfTasksAction
+} from "../store/actions";
 import styled from "styled-components";
 import List from "../components/List";
 import ListActions from "../components/ListActions";
@@ -18,6 +22,11 @@ const ListContainer = () => {
   const [viewAll, setViewAll] = React.useState(false);
   const [modalState, setModalState] = React.useState(false);
   const [sortValue, setSortValue] = React.useState(null);
+
+  const handleSort = sortType => {
+    setSortValue(sortType);
+    dispatch(sortListOfTasksAction(sortType));
+  };
 
   const listOfAllTasks = useSelector(getAllTasks);
   const listOfActiveTasks = useSelector(getAllActiveTasks);
@@ -52,7 +61,7 @@ const ListContainer = () => {
           setViewAll={setViewAll}
           addNewModalSetState={setModalState}
           viewAll={viewAll}
-          setSortValue={setSortValue}
+          handleSort={handleSort}
           sortValue={sortValue}
         />
         {viewAll

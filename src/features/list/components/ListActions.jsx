@@ -5,7 +5,7 @@ const ListActions = ({
   setViewAll,
   viewAll,
   addNewModalSetState,
-  setSortValue,
+  handleSort,
   sortValue
 }) => {
   return (
@@ -22,10 +22,10 @@ const ListActions = ({
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item onClick={() => setSortValue("priority")}>
+          <Dropdown.Item onClick={() => handleSort("Priority")}>
             Priority
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => setSortValue("dueDate")}>
+          <Dropdown.Item onClick={() => handleSort("Due Date")}>
             Due Date
           </Dropdown.Item>
         </Dropdown.Menu>

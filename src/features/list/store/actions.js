@@ -5,7 +5,8 @@ import {
   GET_ALL_TASKS_FROM_API_SUCCESS,
   DELETE_TASK_SUCCESS,
   CHANGE_TASK_STATUS_SUCCESS,
-  ADD_NEW_TASK_SUCCESS
+  ADD_NEW_TASK_SUCCESS,
+  SORT_LIST_OF_TASK_SUCCESS
 } from "./constants";
 
 const getAllTasksFromApiRequest = () => {
@@ -60,5 +61,12 @@ export const addNewTask = data => {
   return {
     type: ADD_NEW_TASK_SUCCESS,
     payload: data
+  };
+};
+
+export const sortListOfTasksAction = value => {
+  return {
+    type: SORT_LIST_OF_TASK_SUCCESS,
+    payload: value
   };
 };
