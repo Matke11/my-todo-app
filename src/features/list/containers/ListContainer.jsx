@@ -17,6 +17,7 @@ const ListContainer = () => {
   const dispatch = useDispatch();
   const [viewAll, setViewAll] = React.useState(false);
   const [modalState, setModalState] = React.useState(false);
+  const [sortValue, setSortValue] = React.useState(null);
 
   const listOfAllTasks = useSelector(getAllTasks);
   const listOfActiveTasks = useSelector(getAllActiveTasks);
@@ -51,6 +52,8 @@ const ListContainer = () => {
           setViewAll={setViewAll}
           addNewModalSetState={setModalState}
           viewAll={viewAll}
+          setSortValue={setSortValue}
+          sortValue={sortValue}
         />
         {viewAll
           ? listOfAllTasks.map(item => (

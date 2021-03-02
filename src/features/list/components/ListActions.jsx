@@ -1,7 +1,13 @@
 import * as React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown } from "react-bootstrap";
 
-const ListActions = ({ setViewAll, viewAll, addNewModalSetState }) => {
+const ListActions = ({
+  setViewAll,
+  viewAll,
+  addNewModalSetState,
+  setSortValue,
+  sortValue
+}) => {
   return (
     <div>
       <Button variant="secondary" onClick={() => setViewAll(!viewAll)}>
@@ -10,6 +16,20 @@ const ListActions = ({ setViewAll, viewAll, addNewModalSetState }) => {
       <Button variant="primary" onClick={() => addNewModalSetState(true)}>
         Add new task
       </Button>
+      <Dropdown>
+        <Dropdown.Toggle variant="success">
+          {!!sortValue ? sortValue : "Sort by"}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => setSortValue("priority")}>
+            Priority
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => setSortValue("dueDate")}>
+            Due Date
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
   );
 };
