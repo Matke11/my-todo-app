@@ -15,9 +15,12 @@ const ListWrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 600px;
-  background-color: rgb(241, 242, 247);
   margin: auto;
   padding: 20px;
+`;
+
+const Title = styled.h1`
+  margin-bottom: 24px;
 `;
 
 const ListContainer = () => {
@@ -59,38 +62,41 @@ const ListContainer = () => {
   return (
     <React.Fragment>
       <ListWrapper>
-        <ListActions
-          setViewAll={setViewAll}
-          addNewModalSetState={setModalState}
-          viewAll={viewAll}
-          handleSort={handleSort}
-          sortValue={sortValue}
-        />
-        {viewAll
-          ? listOfAllTasks.map(item => (
-              <List
-                title={item.title}
-                description={item.description}
-                priority={item.priority}
-                id={item.id}
-                dueDate={item.dueDate}
-                status={item.status}
-                timeEstimated={item.timeEstimated}
-                key={item.id}
-              />
-            ))
-          : listOfActiveTasks.map(item => (
-              <List
-                title={item.title}
-                description={item.description}
-                priority={item.priority}
-                id={item.id}
-                dueDate={item.dueDate}
-                status={item.status}
-                timeEstimated={item.timeEstimated}
-                key={item.id}
-              />
-            ))}
+        <Title>MY-TODO-LIST</Title>
+        <div>
+          <ListActions
+            setViewAll={setViewAll}
+            addNewModalSetState={setModalState}
+            viewAll={viewAll}
+            handleSort={handleSort}
+            sortValue={sortValue}
+          />
+          {viewAll
+            ? listOfAllTasks.map(item => (
+                <List
+                  title={item.title}
+                  description={item.description}
+                  priority={item.priority}
+                  id={item.id}
+                  dueDate={item.dueDate}
+                  status={item.status}
+                  timeEstimated={item.timeEstimated}
+                  key={item.id}
+                />
+              ))
+            : listOfActiveTasks.map(item => (
+                <List
+                  title={item.title}
+                  description={item.description}
+                  priority={item.priority}
+                  id={item.id}
+                  dueDate={item.dueDate}
+                  status={item.status}
+                  timeEstimated={item.timeEstimated}
+                  key={item.id}
+                />
+              ))}
+        </div>
       </ListWrapper>
       <AddNewTaskForm
         handleSubmitTask={handleSubmitTask}

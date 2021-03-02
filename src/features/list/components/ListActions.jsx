@@ -19,14 +19,14 @@ const ListActions = ({
 }) => {
   return (
     <ListActionsWrapper>
-      <Button variant="secondary" onClick={() => setViewAll(!viewAll)}>
+      <Button variant="outline-warning" onClick={() => setViewAll(!viewAll)}>
         {viewAll ? "View only active" : "View All"}
       </Button>
       <Button variant="primary" onClick={() => addNewModalSetState(true)}>
         Add new task
       </Button>
       <Dropdown>
-        <Dropdown.Toggle variant="success">
+        <Dropdown.Toggle variant="Light">
           {!!sortValue ? sortValue : "Sort by"}
         </Dropdown.Toggle>
 

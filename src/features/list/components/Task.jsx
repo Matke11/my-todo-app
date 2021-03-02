@@ -6,7 +6,8 @@ import { Button } from "react-bootstrap";
 
 const TaskWrapper = styled.div`
   text-align: left;
-  height: ${props => (props.isExpanded ? "200px" : `100px`)};
+  max-height: ${props => (props.isExpanded ? "300px" : `100px`)};
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
   padding: 12px;
@@ -149,16 +150,16 @@ const Task = ({
           <DescriptionText>{description}</DescriptionText>
         </AdditionalInfo>
       </TaskWrapper>
-      {!isTaskStatusDone ? (
-        <TaskActionWrapper>
-          <Button variant="danger" onClick={() => handleDelete(id)}>
-            Delete
-          </Button>
+      <TaskActionWrapper>
+        <Button variant="danger" onClick={() => handleDelete(id)}>
+          Delete
+        </Button>
+        {!isTaskStatusDone ? (
           <Button variant="secondary" onClick={() => handleStatusChange(id)}>
             Done
           </Button>
-        </TaskActionWrapper>
-      ) : null}
+        ) : null}
+      </TaskActionWrapper>
     </React.Fragment>
   );
 };

@@ -8,9 +8,14 @@ const FieldWrapper = styled.div`
   input,
   select {
     min-width: 100%;
-    border-radius: 5px;
     border: 1px solid blue;
     padding: 10px;
+    border-bottom: 1px solid blue;
+    padding: 10px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
   }
   span {
     color: red;
@@ -20,13 +25,25 @@ const FieldWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
+const ModalContentWrapper = styled(Modal.Body)`
+  padding: 32px;
+`;
+
+const ModalHeaderWrapper = styled(Modal.Header)`
+  padding: 32px;
+`;
+
+const SubmitButton = styled(Button)`
+  margin-top: 24px;
+`;
+
 const AddNewTaskForm = ({ handleSubmitTask, modalState, setModalState }) => {
   return (
     <Modal show={modalState} onHide={() => setModalState(false)}>
-      <Modal.Header closeButton>
+      <ModalHeaderWrapper closeButton>
         <Modal.Title>Add new task</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+      </ModalHeaderWrapper>
+      <ModalContentWrapper>
         <Formik
           initialValues={{
             title: "",
@@ -89,13 +106,13 @@ const AddNewTaskForm = ({ handleSubmitTask, modalState, setModalState }) => {
                   ) : null}
                 </FieldWrapper>
               </div>
-              <Button variant="primary" type="submit">
+              <SubmitButton variant="primary" type="submit">
                 Submit
-              </Button>
+              </SubmitButton>
             </Form>
           )}
         </Formik>
-      </Modal.Body>
+      </ModalContentWrapper>
     </Modal>
   );
 };
@@ -105,7 +122,23 @@ const AddNNewTaskFormValidation = Yup.object().shape({
   description: Yup.string().required("Required"),
   priority: Yup.string().required("Required"),
   dueDate: Yup.string().required("Required"),
-  timeEstimated: Yup.string().required("Required")
+  timeEstimated: Yup.string()
+    .required("Required")
+    .test(
+      "chars-number",
+      "Please input a value like 1 day or 1 Day",
+      timeEstimated =>
+        timeEstimated
+          ? timeEstimated.includes("week") ||
+            timeEstimated.includes("month") ||
+            timeEstimated.includes("day") ||
+            timeEstimated.includes("year") ||
+            timeEstimated.includes("Week") ||
+            timeEstimated.includes("Month") ||
+            timeEstimated.includes("Day") ||
+            timeEstimated.includes("Year")
+          : null
+    )
 });
 
 export default AddNewTaskForm;
