@@ -86,6 +86,24 @@ const TaskActionWrapper = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   transition: all ease-in-out 0.5s;
+  button:nth-child(1) {
+    margin-bottom: 12px;
+  }
+  @media (max-width: 600px) {
+    flex-flow: row;
+    position: relative;
+    right: auto;
+    justify-content: center;
+    top: 0;
+    transform: none;
+    button {
+      margin-right: 12px;
+      margin-top: 14px;
+    }
+    button:nth-child(1) {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const Task = ({

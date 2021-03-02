@@ -6,6 +6,9 @@ const ListTaskWrapper = styled.div`
   margin: 24px;
   max-width: 350px;
   position: relative;
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 `;
 
 const List = ({

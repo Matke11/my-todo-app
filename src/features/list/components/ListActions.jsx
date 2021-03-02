@@ -4,7 +4,10 @@ import styled from "styled-components";
 
 const ListActionsWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  button:nth-child(2) {
+    margin: 0 12px;
+  }
 `;
 
 const ListActions = ({
