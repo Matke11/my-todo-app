@@ -14,6 +14,10 @@ import AddNewTaskForm from "../components/AddNewTaskForm";
 const ListWrapper = styled.div`
   display: flex;
   flex-flow: column;
+  width: 600px;
+  background-color: rgb(241, 242, 247);
+  margin: auto;
+  padding: 20px;
 `;
 
 const ListContainer = () => {

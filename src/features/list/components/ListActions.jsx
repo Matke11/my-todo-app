@@ -1,5 +1,11 @@
 import * as React from "react";
 import { Button, Dropdown } from "react-bootstrap";
+import styled from "styled-components";
+
+const ListActionsWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
 
 const ListActions = ({
   setViewAll,
@@ -9,7 +15,7 @@ const ListActions = ({
   sortValue
 }) => {
   return (
-    <div>
+    <ListActionsWrapper>
       <Button variant="secondary" onClick={() => setViewAll(!viewAll)}>
         {viewAll ? "View only active" : "View All"}
       </Button>
@@ -30,7 +36,7 @@ const ListActions = ({
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-    </div>
+    </ListActionsWrapper>
   );
 };
 

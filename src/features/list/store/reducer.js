@@ -20,11 +20,14 @@ const listReducer = (state = initialState, action) => {
       return state;
 
     case DELETE_TASK_SUCCESS:
-      const newArray = state.allTasks.filter(
+      const tasksArray = state.allTasks.filter(
         item => item.id !== action.payload
       );
-      state.allTasks = newArray;
-      state.activeTasks = newArray;
+      const ctiveTasksArray = state.activeTasks.filter(
+        item => item.id !== action.payload
+      );
+      state.allTasks = tasksArray;
+      state.activeTasks = ctiveTasksArray;
       return state;
 
     case CHANGE_TASK_STATUS_SUCCESS:
